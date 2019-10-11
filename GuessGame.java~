@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class GuessGame {
+  
+  public static Scanner input = new Scanner(System.in);
+  public static int random;
+
+  public static void main(String[] args) 
+  {
+      play();  
+       
+  }
+  
+  public static void startMenu()
+  {
+    System.out.println("1. Beginner Level  (numbers between 1 and 10)");
+    System.out.println("2. Intermediate Level  (numbers between 1 and 100)");
+    System.out.println("3. Advanced Level  (numbers between 1 and 1,000)");
+    System.out.println("4. Expert Level  (numbers between 1 and 10,000)");
+    System.out.println();
+    System.out.println("Type the number corresponding to the level you want to play");
+    int levelOfPlay = input.nextInt();
+    
+    if(levelOfPlay == 1 || levelOfPlay == 2 || levelOfPlay == 3 || levelOfPlay == 4)
+    {
+         random = (int)(((Math.random()*(((int)(Math.pow(10,levelOfPlay)))-1)))+1);
+         System.out.println("A random number was generated");
+         System.out.println();
+         System.out.println("Guess the number:");
+         
+         int guesses = 0;
+         int guess = 0;
+         while(guess != random)
+         {
+           guess = input.nextInt();
+           guesses++;
+           if(guess < random)
+             System.out.println("Your guess was too low");
+           
+           if(guess > random)
+             System.out.println("Your guess was too high");
+         }
+         System.out.println("Congratlations!!!");
+         System.out.println("You have guess the right number");
+         System.out.println();
+         System.out.println("It took you " + guesses + " tries to get the answer");
+         
+         System.out.println();
+         System.out.println("Would you like to play again?");
+         System.out.print("[y] yes ");
+         input.nextLine();
+         String again = input.nextLine();
+         if(again.equals("y"))
+           play();
+         
+    }
+    else
+     {
+       invalid();
+     }
+  }
+  
+  public static void invalid()
+  {
+    System.out.println();
+    System.out.println("You have entered and invalid number for the level of play");
+    System.out.println();
+    System.out.println("Please enter one of the following numbers to choose a letter:");
+    System.out.println("1,2,3, or 4");
+    System.out.println();
+    startMenu();
+  }
+  
+  public static void play()
+  {
+    int Lop = 0;
+    
+    System.out.println("Guessing Game");
+    System.out.println();
+    
+    startMenu();
+  }
+}
